@@ -17,7 +17,7 @@ def cv2_to_pil(cv2_image):
 
 
 
-def download_text(image, filename):
+def download_image(image, filename):
     buffer = io.BytesIO()
     image.save(buffer, format="PNG")
     b64 = base64.b64encode(buffer.getbuffer()).decode()
@@ -71,9 +71,9 @@ def download():
         st.button("Download Counted Image", on_click=trigger_download)
         if st.session_state.get("trigger_download", False):
             st.write("Exporting, please wait...")
-            download_text(image, 'counted_image.png')
+            download_image(image, 'counted_image.png')
             st.session_state["trigger_download"] = False
-            st.rerun(scope="fragment")
+            # st.rerun(scope="fragment")
 
         # st.download_button(
         #     label="Download Counted Image",
